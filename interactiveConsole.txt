@@ -1,0 +1,48 @@
+python manage.py shell
+from django.contrib.auth.models import User
+from blog.models import Post
+*****************************************************
+user = User.objects.get(username='jgjefersonluis')
+user
+dir(user)
+user.first_name
+user.username
+user.is_authenticated
+dir(user)
+user.get_full_name
+user.email
+user.get_full_name()
+post=Post(titulo='Testando o shell do Django', slug='Testando-o-shell-do-Django', conteudo='Testando o shell do Django', autor=user)
+post
+post.save()
+*******************************
+# Recuperando e atualizando dados
+
+post
+post.titulo
+post.titulo='Testando o shell do Django Atualizando os Dados'
+post.save()
+
+acesso_post = Post.objects.get(titulo='Teste')
+acesso_post
+acesso_post.titulo = 'Meu Novo Titulo'
+acesso_post.save()
+
+post_2=Post.objects.create(titulo='Testando o shell do Django 2', slug='Testando-o-shell-do-Django-2', conteudo='Testando o shell do Django 2', autor=user)
+*****************
+Filter
+Post.objects.filter(publicado__year=2020)
+Post.objects.filter(publicado__year=2020, autor__username='jgjefersonluis')
+Post.objects.filter(publicado__year=2020).exclude(titulo__startswith='Teste 2')
+Post.objects.order_by('publicado')
+
+python manage.py shell
+from django.contrib.auth.models import User
+from blog.models import Post
+Post.published.all()
+
+
+
+
+
+
